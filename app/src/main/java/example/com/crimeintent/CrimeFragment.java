@@ -66,7 +66,7 @@ public class CrimeFragment extends Fragment {
         mTitleField = v.findViewById(R.id.crime_title);
 
         mDateButton = v.findViewById(R.id.crime_date);
-        updateDate();
+        mDateButton.setText(mCrime.getDate().toString());
 
 
         mDateButton.setOnClickListener(new View.OnClickListener() {
