@@ -1,15 +1,15 @@
 package example.com.crimeintent;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toolbar;
-
-import org.w3c.dom.Text;
 
 public class  LoginPage extends AppCompatActivity {
 
@@ -37,14 +37,35 @@ public class  LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 validate(Name.getText().toString(), Password.getText().toString());
+
+
             }
         });
+
+
     }
 
     private void validate(String userName, String userPassword){
-        if((userName.equals("Safwan")) && (userPassword.equals("1234"))){
+        if((userName.equals("Safwan"))||(userName.equals("safwan"))||(userName.equals("Abdullah"))||(userName.equals("abdullah")) && (userPassword.equals("1234"))){
             Intent intent = new Intent(LoginPage.this, CrimeListActivity.class);
             startActivity(intent);
+
+            NotificationManager notif=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+            String tittle="hello";
+            String body="You Successfully Login";
+            String subject="CrimeIntent";
+
+            Notification notify=new Notification.Builder
+                    (getApplicationContext())
+                    .setContentTitle(tittle)
+                    .setContentText(body)
+                    .setContentTitle(subject)
+                    .setSmallIcon(R.mipmap.ic_solved).build();
+
+            notify.flags |= Notification.FLAG_AUTO_CANCEL;
+            notif.notify(0, notify);
+
+
         }else{
             counter--;
 
